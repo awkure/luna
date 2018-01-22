@@ -1,0 +1,28 @@
+[package]
+name = "luna"
+version = "0.0.4"
+authors = ["awkure <awkure@protonmail.ch>"]
+
+[lib]
+crate-type = ["staticlib"]
+path = "src/core.rs"
+
+[dependencies]
+compiler_builtins = { git = "https://github.com/rust-lang-nursery/compiler-builtins" }
+rlibc = "1.0.0"
+bitflags = "0.7.0"
+
+x86_64 = "0.1.2"
+bit_field = "0.9.0"
+
+[dependencies.lazy_static]
+version = "0.2.4"
+features = ["spin_no_std"]
+
+[dependencies.spin]
+version = "0.4.5"
+optional = true
+
+[features]
+default = ["use_spin"]
+use_spin = ["spin"]

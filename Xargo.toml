@@ -1,0 +1,2 @@
+[target.luna-x86_64.dependencies]
+alloc = {}

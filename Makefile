@@ -1,4 +1,3 @@
-# TODO : detect grub2-mkrescue dependent on linux distro
 include Config.mk
 
 ISO    := build/luna-$(ARCH).iso
@@ -15,9 +14,7 @@ rust_kernel     := target/$(TARGET)/release/libluna.a
 
 rescue_path 	:= build/isofiles
 
-.DEFAULT_GOAL := check # help
-
-repeat : clean iso run
+.DEFAULT_GOAL := help
 
 check :
 	xargo check --target $(TARGET)
@@ -30,7 +27,6 @@ clean :
 
 distclean : clean
 
-# compile assembly files
 build/arch/$(ARCH)/%.o : platform/$(ARCH)/%.S
 	mkdir -p $(shell dirname $@)
 	nasm -felf64 $< -o $@
@@ -46,7 +42,7 @@ gdb :
 
 iso : $(ISO)
 
-$(ISO) : $(KERNEL) # $(grub_cfg)
+$(ISO) : $(KERNEL)
 	mkdir -p $(rescue_path)/boot/grub
 	cp $(KERNEL) $(rescue_path)/boot/kernel.bin
 	cp $(grub_cfg) $(rescue_path)/boot/grub

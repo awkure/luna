@@ -1,11 +1,6 @@
 // -*- mode: rust; -*-
 
 // Core module of the operating system.
-// 
-// TODO : 
-//    - documentation
-//    - fix hierarchy
-//    ? interrupts
 
 #![feature( asm
           , alloc
@@ -29,7 +24,6 @@
         , unreadable_literal
         , uncoditional_recursion
         , identity_op
-
         , unused_imports
         , dead_code
         , unused_macros )]
@@ -152,4 +146,3 @@ pub extern "C" fn main(_mb_addr : usize) {
 
     loop {}
 }
- 
